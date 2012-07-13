@@ -29,13 +29,13 @@ class LatestArticles(Feed):
         return None
 
     def item_pubdate(self, obj):
-        return obj.created_on
+        return obj.created
 
     def item_link(self, obj):
         return obj.get_absolute_url()
 
     def items(self):
-        return Article.objects.filter(published=True).order_by('-created_on')[:15]
+        return Article.objects.filter(published=True).order_by('-created')[:15]
 
 class RSSv1LatestArticles(LatestArticles):
     link = "/rss/v1/latest/"

@@ -9,7 +9,7 @@ from models import Article
 import availability
 
 def index(request, page=1, max_count=3):
-    qs = Article.objects.filter(published=True).order_by('-created_on')
+    qs = Article.objects.filter(published=True).order_by('-created')
 
     return object_list(request, queryset=qs, template_object_name='article',\
         paginate_by=max_count, page=page, extra_context={

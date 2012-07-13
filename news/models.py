@@ -31,7 +31,7 @@ class Article(models.Model):
     """A single news entry."""
 
     class Meta(object):
-        ordering = ('-created_on',)
+        ordering = ['-created']
 
     title = models.CharField(max_length=64)
     body = models.TextField()
@@ -39,7 +39,8 @@ class Article(models.Model):
     markup_filter = models.PositiveIntegerField(max_length=32, choices=MARKUP_FILTER_CHOICES, null=True, blank=True)
     slug = models.SlugField(blank=True, unique=True)
     published = models.BooleanField(default=False)
-    created_on = models.DateTimeField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
 
@@ -73,10 +74,7 @@ class Article(models.Model):
             else:
                 self.summary = self.body
 
-        if self.created_on is None:
-            self.created_on = datetime.now()
-
-        self.slug = ('%s-%s' % (self.created_on.strftime('%Y-%m-%d'), slugify(self.title)))[:50]
+        self.slug = ('%s-%s' % (self.created.strftime('%Y-%m-%d'), slugify(self.title)))[:50]
 
         super(Article,self).save(*args, **kwargs)
 
