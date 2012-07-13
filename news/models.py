@@ -66,8 +66,8 @@ class Article(models.Model):
     def get_absolute_url(self):
         return ('news_article', [str(self.id)])
 
-    def save(self, force_insert=False, force_update=False):
-        if self.summary == None:
+    def save(self, *args, **kwargs):
+        if not self.summary:
             if len(self.body) > SUMMARY_MAX_LENGTH:
                 self.summary = self.body[0:(SUMMARY_MAX_LENGTH-1)]
             else:
@@ -76,9 +76,9 @@ class Article(models.Model):
         if self.created_on is None:
             self.created_on = datetime.now()
 
-        self.slug = slugify(self.title)
+        self.slug = ('%s-%s' % (self.created_on.strftime('%Y-%m-%d'), slugify(self.title)))[:50]
 
-        super(Article,self).save(force_insert, force_update)
+        super(Article,self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.title
