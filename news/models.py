@@ -74,6 +74,8 @@ class Article(models.Model):
             else:
                 self.summary = self.body
 
+        if not self.created:
+            self.created = datetime.now()
         self.slug = ('%s-%s' % (self.created.strftime('%Y-%m-%d'), slugify(self.title)))[:50]
 
         super(Article,self).save(*args, **kwargs)
