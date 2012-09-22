@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from . import availability
 
-SUMMARY_MAX_LENGTH = 768
-
 MARKUP_FILTER_CHOICES = []
 
-# Loops through each filter in the dict of possible markup filters and maps them to choices.
+# Loops through each filter in the dict of possible markup filters and
+# maps them to choices.
 filters_iter = availability.markup_filters.iterkeys()
 for index in xrange(len(availability.markup_filters)):
     current_filter = filters_iter.next()
@@ -66,15 +65,9 @@ class Article(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('news_article', [str(self.id)])
+        return 'news_article', [str(self.id)]
 
     def save(self, *args, **kwargs):
-        if not self.summary:
-            if len(self.body) > SUMMARY_MAX_LENGTH:
-                self.summary = self.body[0:(SUMMARY_MAX_LENGTH - 1)]
-            else:
-                self.summary = self.body
-
         if not self.created:
             self.created = datetime.now()
         self.slug = ('news-%s-%s' % (self.created.strftime('%Y-%m-%d'), slugify(self.title)))[:50]
