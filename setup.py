@@ -8,15 +8,15 @@ except ImportError:
     from setuptools.command.test import test
 
 setup(name = 'django-news',
-      description = 'A django application for keeping your fans up to date.',
-      author = 'Brandon R. Stoner',
-      author_email = 'monokrome@monokro.me',
-      version = '0.7',
+      description = "Fork of monokrome's lightweight news app",
+      author = 'Byron Ruth, Kevin Murphy, Brandon R. Stoner (orig)',
+      author_email = 'b@devel.io',
+      version = '0.7.1',
 
       zip_safe = False,
       include_package_data = True,
       packages = find_packages(),
-      url = 'http://github.com/monokrome/django-news/',
+      url = 'http://github.com/cbmi/django-news/',
 
       classifiers = [
           "Development Status :: 4 - Beta",

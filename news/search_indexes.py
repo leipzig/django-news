@@ -1,18 +1,17 @@
-from haystack.indexes import *
-from haystack import site
+from haystack import indexes
 from models import Article
 
-class ArticleIndex(SearchIndex):
-    text = CharField(document=True, use_template=True)
-    title = CharField(model_attr='title')
-    body = CharField(model_attr='body')
-    summary = CharField(model_attr='summary')
-    slug = CharField(model_attr='slug')
-    author = CharField(model_attr='author')
-    categories = CharField(model_attr='category')
+class ArticleIndex(indexes.SearchIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    title = indexes.CharField(model_attr='title')
+    body = indexes.CharField(model_attr='body')
+    summary = indexes.CharField(model_attr='summary')
+    slug = indexes.CharField(model_attr='slug')
+    author = indexes.CharField(model_attr='author')
+    categories = indexes.CharField(model_attr='category')
 
-    def get_queryset(self):
-        return Article.objects.all()
+    def get_model(self):
+        return Article
 
-site.register(Article, ArticleIndex)
-
+    def index_queryset(self, using=None):
+        return self.get_model().objects.all()
