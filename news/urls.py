@@ -29,5 +29,3 @@ urlpatterns = patterns('',
     url(r'^rss/v2/(?P<url>.+)$', 'Feed', {'feed_dict': rss_v2_feeds}, name='news_feed_rss2'),
     url(r'^atom/v1/(?P<url>.+)$', 'Feed', {'feed_dict': atom_v1_feeds}, name='news_feed_atom'),
 )
-
-django.contrib.syndication.views
