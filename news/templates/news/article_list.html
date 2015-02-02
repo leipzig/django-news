@@ -1,6 +1,7 @@
 {% extends "news/base.html" %}
 
 {% block content %}
+{% markdown %}
       <ul class="articles">
       {% for article in article_list %}
         <li class="article {% cycle "odd" "even" %}">
@@ -48,5 +49,6 @@
 			</div>
 		{% endif %}
       </ul>
+{% endmarkdown %}
 {% endblock content %}
 
