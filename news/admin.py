@@ -6,13 +6,13 @@ from models import Article
 
 class ArticleAdmin(admin.ModelAdmin):
 #    inlines = [AttachmentInlines]
-    list_display = ('title', 'published', 'created', 'modified', 'markup_filter', 'slug')
+    list_display = ('title', 'published', 'created', 'modified', 'slug')
     readonly_fields = ('created', 'modified')
 
     fieldsets = (
         ('Article Information', {'fields': ('title','body','published')}),
         ('Advanced', {
-            'fields': ['markup_filter', 'author', 'slug', 'created', 'modified', 'summary'],
+            'fields': ['author', 'slug', 'created', 'modified', 'summary'],
             'classes': ['collapse',],
         }),
     )

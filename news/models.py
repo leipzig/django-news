@@ -4,17 +4,6 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from . import availability
 
-MARKUP_FILTER_CHOICES = []
-
-# Loops through each filter in the dict of possible markup filters and
-# maps them to choices.
-filters_iter = availability.markup_filters.iterkeys()
-for index in xrange(len(availability.markup_filters)):
-    current_filter = filters_iter.next()
-
-    if availability.markup_filters[current_filter] is True:
-        MARKUP_FILTER_CHOICES.append((index, current_filter))
-
 
 class Category(models.Model):
     parent = models.ForeignKey('self', blank=True, null=True)
@@ -36,8 +25,6 @@ class Article(models.Model):
     title = models.CharField(max_length=64)
     body = models.TextField()
     summary = models.TextField(blank=True)
-    markup_filter = models.PositiveIntegerField(max_length=32,
-        choices=MARKUP_FILTER_CHOICES, null=True, blank=True)
     slug = models.SlugField(blank=True, unique=True)
     published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -49,19 +36,13 @@ class Article(models.Model):
         return self.formatted_body(summary=True)
 
     def formatted_body(self, summary=False):
-        from django.contrib.markup.templatetags import markup
 
         if summary:
             body = self.summary
         else:
             body = self.body
 
-        if self.markup_filter is not None and self.get_markup_filter_display() in availability.markup_filters:
-            method = self.get_markup_filter_display()
-            markup_method = getattr(markup, method)
-            return markup_method(body)
-        else:
-            return body
+        return body
 
     @models.permalink
     def get_absolute_url(self):

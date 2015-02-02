@@ -10,35 +10,3 @@ if hasattr(settings, 'INSTALLED_APPS') and 'django.contrib.comments' in settings
     comments = True
 else:
     comments = False
-
-markup_filters = datastructures.SortedDict()
-
-###
-# Check if markup is available
-if hasattr(settings, 'INSTALLED_APPS') and 'django.contrib.markup' in settings.INSTALLED_APPS:
-    markup = True
-else:
-    markup = False
-
-# Check for supported markup methods
-try:
-    import textile
-
-    markup_filters['textile'] = True
-except ImportError:
-    markup_filters['textile'] = False
-
-try:
-    import markdown
-
-    markup_filters['markdown'] = True
-except ImportError:
-    markup_filters['markdown'] = False
-
-try:
-    import docutils
-
-    markup_filters['restructuredtext'] = True
-except ImportError:
-    markup_filters['restructuredtext'] = False
-
