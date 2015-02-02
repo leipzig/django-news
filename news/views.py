@@ -1,4 +1,4 @@
-from django.views.generic.list_detail import object_list,object_detail
+from django.views.generic.list.ListView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
@@ -11,7 +11,7 @@ import availability
 def index(request, page=1, max_count=3):
     qs = Article.objects.filter(published=True).order_by('-created')
 
-    return object_list(request, queryset=qs, template_object_name='article',\
+    return ListView.as_view(request, queryset=qs, template_object_name='article',\
         paginate_by=max_count, page=page, extra_context={
             'comments_available': availability.comments
         })
@@ -31,7 +31,7 @@ def article(request, identifier, slugified=False):
         'comments_available': availability.comments
     }
 
-    return object_detail(request, **data)
+    return ListView.as_view(request, **data)
 
 @login_required
 def edit_article(request, article_id=None, posted=False):
