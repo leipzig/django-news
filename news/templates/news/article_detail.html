@@ -1,6 +1,7 @@
 {% extends "news/base.html" %}
 
 {% block content %}
+{% markdown %}
 	<ul class="articles">
 		<li class="article odd">
 			<h3><a href="{% url news_article article.id %}">
@@ -32,5 +33,6 @@
 			{% include "news/article_comments.html" %}
 			{% include "news/article_comment_form.html" %}
 		{% endif %}
+{% endmarkdown %}
 {% endblock content %}
 
