@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url, include
 from models import Article
 from feeds import RSSv1LatestArticles, RSSv2LatestArticles, AtomLatestArticles
-
+from django.contrib.syndication.views import Feed
 
 rss_v1_feeds = {
     'latest': RSSv1LatestArticles
@@ -25,8 +25,9 @@ urlpatterns = patterns('',
     url(r'^article/(?P<identifier>[\d]+)/$','news.views.article', name='news_article'),
     url(r'^article/(?P<identifier>[^/]+)/$','news.views.article', {'slugified':True}, name='news_article'),
 
-    url(r'^rss/v1/(?P<url>.+)$', 'django.contrib.syndication.views.feed', {'feed_dict': rss_v1_feeds}, name='news_feed_rss'),
-    url(r'^rss/v2/(?P<url>.+)$', 'django.contrib.syndication.views.feed', {'feed_dict': rss_v2_feeds}, name='news_feed_rss2'),
-    url(r'^atom/v1/(?P<url>.+)$', 'django.contrib.syndication.views.feed', {'feed_dict': atom_v1_feeds}, name='news_feed_atom'),
+    url(r'^rss/v1/(?P<url>.+)$', 'Feed', {'feed_dict': rss_v1_feeds}, name='news_feed_rss'),
+    url(r'^rss/v2/(?P<url>.+)$', 'Feed', {'feed_dict': rss_v2_feeds}, name='news_feed_rss2'),
+    url(r'^atom/v1/(?P<url>.+)$', 'Feed', {'feed_dict': atom_v1_feeds}, name='news_feed_atom'),
 )
 
+django.contrib.syndication.views
