@@ -1,6 +1,6 @@
 from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed, \
     RssUserland091Feed
-from django.contrib.syndication.feeds import Feed, FeedDoesNotExist,\
+from django.contrib.syndication.views import Feed, FeedDoesNotExist,\
     ObjectDoesNotExist
 from models import Article
 

@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url, include
 from models import Article
 from feeds import RSSv1LatestArticles, RSSv2LatestArticles, AtomLatestArticles
 
+
 rss_v1_feeds = {
     'latest': RSSv1LatestArticles
 }
