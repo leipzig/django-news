@@ -17,7 +17,10 @@ setup(name = 'django-news',
       include_package_data = True,
       packages = find_packages(),
       url = 'http://github.com/cbmi/django-news/',
-
+      install_requires: [
+              'django-markdown-deux',
+              'markdown2'
+      ],
       classifiers = [
           "Development Status :: 4 - Beta",
           "Environment :: Web Environment",
