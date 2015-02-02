@@ -9,7 +9,7 @@
 			Comment on this
 		</legend>
 
-		<input type="hidden" name="next" value="{% url news_article article.pk %}/">
+		<input type="hidden" name="next" value="{% url 'news_article' article.pk %}/">
 		{{ article_comment_form.honeypot }}
 		{{ article_comment_form.object_pk }}
 		{{ article_comment_form.content_type }}
