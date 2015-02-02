@@ -1,14 +1,13 @@
 {% extends "news/base.html" %}
-
+{% load markdown_deux_tags %}
 {% block content %}
-{% markdown %}
 	<ul class="articles">
 		<li class="article odd">
 			<h3><a href="{% url news_article article.id %}">
 				{{ article.title }}
 			</a></h3>
 			<div class="body">
-				{{ article.formatted_body|safe }}
+				{{ article.formatted_body|markdown }}
 			</div>
 
 			<h6>
@@ -33,6 +32,5 @@
 			{% include "news/article_comments.html" %}
 			{% include "news/article_comment_form.html" %}
 		{% endif %}
-{% endmarkdown %}
 {% endblock content %}
 
