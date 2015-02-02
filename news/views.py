@@ -11,16 +11,15 @@ import availability
 def index(request, page=1, max_count=3):
     qs = Article.objects.filter(published=True).order_by('-created')
 
-    return ListView.as_view(request, queryset=qs, template_object_name='article',\
+    return ListView.as_view(queryset=qs)(request, template_object_name='article',\
         paginate_by=max_count, page=page, extra_context={
             'comments_available': availability.comments
         })
 
 def article(request, identifier, slugified=False):
-    data = {
-        'queryset': Article.objects.filter(published=True)
-    }
+    qs = Article.objects.filter(published=True)
 
+    data = {}
     if slugified == False:
         data['object_id'] = identifier
     else:
@@ -31,7 +30,7 @@ def article(request, identifier, slugified=False):
         'comments_available': availability.comments
     }
 
-    return ListView.as_view(request, **data)
+    return ListView.as_view(queryset=qs)(request, **data)
 
 @login_required
 def edit_article(request, article_id=None, posted=False):
