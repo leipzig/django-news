@@ -10,6 +10,7 @@ A django application for posting news. This is a fairly decent *news or blogging
 
 * Byron Ruth <b@devel.io>
 * Kevin Murphy <murphyke@email.chop.edu>
+* Jeremy Leipzig <leipzig@gmail.com>
 
 ## Release Notes
 
