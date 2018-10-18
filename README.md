@@ -25,3 +25,5 @@ A django application for posting news. This is a fairly decent *news or blogging
 0.7.1 - Updated for Haystack 2.X
 
 0.8.0 - Changes to deal with deprecation of markup.templatetags
+
+0.8.1 - 2to3
