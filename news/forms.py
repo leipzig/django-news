@@ -1,5 +1,5 @@
 from django import forms
-from models import Article
+from .models import Article
 
 class NewsArticleForm(forms.ModelForm):
     class Meta(object):

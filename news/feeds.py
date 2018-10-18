@@ -2,7 +2,7 @@ from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed, \
     RssUserland091Feed
 from django.contrib.syndication.views import Feed, FeedDoesNotExist,\
     ObjectDoesNotExist
-from models import Article
+from .models import Article
 
 class LatestArticles(Feed):
     title = ""

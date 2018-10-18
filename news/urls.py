@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url, include
-from models import Article
-from feeds import RSSv1LatestArticles, RSSv2LatestArticles, AtomLatestArticles
+from .models import Article
+from .feeds import RSSv1LatestArticles, RSSv2LatestArticles, AtomLatestArticles
 from django.contrib.syndication.views import Feed
 
 rss_v1_feeds = {

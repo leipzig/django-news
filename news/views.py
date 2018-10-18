@@ -4,9 +4,9 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from forms import NewsArticleForm
-from models import Article
-import availability
+from .forms import NewsArticleForm
+from .models import Article
+from . import availability
 
 def index(request, page=1, max_count=3):
     qs = Article.objects.filter(published=True).order_by('-created')
