@@ -9,14 +9,14 @@ except ImportError:
 
 setup(name = 'django-news',
       description = "Fork of monokrome's lightweight news app",
-      author = 'Byron Ruth, Kevin Murphy, Brandon R. Stoner (orig)',
-      author_email = 'b@devel.io',
+      author = 'Byron Ruth, Kevin Murphy, Jeremy Leipzig, Brandon R. Stoner (orig)',
+      author_email = 'leipzig@gmail.com',
       version = '0.8.1',
 
       zip_safe = False,
       include_package_data = True,
       packages = find_packages(),
-      url = 'http://github.com/cbmi/django-news/',
+      url = 'http://github.com/leipzig/django-news/',
       install_requires = [
               'django-markdown-deux',
               'markdown2'
