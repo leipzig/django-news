@@ -11,7 +11,7 @@ setup(name = 'django-news',
       description = "Fork of monokrome's lightweight news app",
       author = 'Byron Ruth, Kevin Murphy, Jeremy Leipzig, Brandon R. Stoner (orig)',
       author_email = 'leipzig@gmail.com',
-      version = '0.8.1',
+      version = '0.8.2',
 
       zip_safe = False,
       include_package_data = True,
