@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -44,9 +45,9 @@ class Article(models.Model):
 
         return body
 
-    @models.permalink
+    
     def get_absolute_url(self):
-        return 'news_article', [str(self.id)]
+        return reverse('news_article', args=(self.id,))
 
     def save(self, *args, **kwargs):
         if not self.created:
