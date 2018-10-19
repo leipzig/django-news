@@ -29,7 +29,7 @@ class Article(models.Model):
     published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, null=True, blank=True)
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category, related_name='articles', null=True, blank=True)
 
     def formatted_summary(self):
