@@ -1,6 +1,5 @@
 ### This is a non-standard method of checking the availability of different modules in django.
 ### TODO: Find/create a more centralized, simple, standard method of doing this.
-from exceptions import ImportError
 from django.conf import settings
 from django.utils import datastructures
 
