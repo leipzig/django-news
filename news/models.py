@@ -6,7 +6,7 @@ from . import availability
 
 
 class Category(models.Model):
-    parent = models.ForeignKey('self', blank=True, null=True)
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=32, unique=True)
 
     def __unicode__(self):
